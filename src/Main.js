@@ -35,8 +35,7 @@ let levelConfig = {
   }
 }
 let game = new Phaser.Game(config);
-
-map =  [
+let map =  [
   [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
   [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
   [ 0,-1,-1,-1,-1,-1,-1,-1, 0, 0],

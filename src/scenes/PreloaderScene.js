@@ -94,13 +94,13 @@ class PreloaderScene extends Phaser.Scene {
     this.load.spritesheet('tower', 'assets/level/Idle.png',{frameWidth: 128, frameHeight: 128, startFrame: 0, endFrame: 13});
     //this.load.spritesheet('shoot', 'assets/level/Shot.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 13});
     this.load.spritesheet('enemy', 'assets/level/Bandit.png', {frameWidth: 128, frameHeight: 128, startFrame: 0, endFrame: 7});
-    this.load.image('base', 'assets/level/bandit.png');
+    this.load.image('base', 'assets/level/base.png');
     this.load.image('title', 'assets/ui/title.png');
     this.load.image('cursor', 'assets/ui/cursor.png');
     this.load.image('blueButton1', 'assets/ui/blue_button02.png');
     this.load.image('blueButton2', 'assets/ui/blue_button03.png');
     this.anims.create({key:'shoot', frames: this.anims.generateFrameNumbers('shoot', {start: 0, end: 13, first: 0}),frameRate: 30});
-
+    this.load.audio('bgmusic', './assets/ui/Lament_Orchestra.wav');
     // placeholder
     this.load.image('logo2', 'assets/logo.png');
 

@@ -1,5 +1,3 @@
-
-
 class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
@@ -28,7 +26,6 @@ class GameScene extends Phaser.Scene {
 
   create() {
     this.events.emit('startRound', this.level);
-
     this.uiScene.events.on('roundReady', function() {
       this.roundStarted = true;
     }.bind(this));
@@ -37,10 +34,13 @@ class GameScene extends Phaser.Scene {
     this.createPath();
     this.createCursor();
     this.createGroups();
+    let bgm = this.sound.add('bgmusic', {volume: 0.3});
+    bgm.play();
   }
 
   update(time, delta) {
     // if its time for the next enemy
+    
     if (time > this.nextEnemy && this.roundStarted && this.enemies.countActive(true) < this.remainingEnemies) {
       var enemy = this.enemies.getFirstDead();
       if (!enemy) {

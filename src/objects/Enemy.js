@@ -22,7 +22,7 @@ class Enemy extends Phaser.GameObjects.Image {
     // rotate enemy
     //if (this.follower.vec.y > this.y && this.follower.vec.y !== this.y) this.angle = 0;
     //if (this.follower.vec.x > this.x && this.follower.vec.x !== this.x) this.angle = -90;
-
+    
     // set the x and y of our enemy
     this.setPosition(this.follower.vec.x+20, this.follower.vec.y-50);
 

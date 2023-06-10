@@ -73,7 +73,6 @@ class UIScene extends Phaser.Scene {
     this.gameScene.events.on('startRound', function (level) {
       this.levelText.setText('Level: ' + level);
       this.levelText.alpha = 1;
-
       // fade level text
       this.add.tween({
         targets: this.levelText,
