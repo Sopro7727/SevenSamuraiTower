@@ -26,10 +26,10 @@ let levelConfig = {
   initial: {
     enemySpeed: 1/100000,
     enemyHealth: 200,
-    bulletDamage: 35,
+    bulletDamage: 50,
     numOfEnemies: 10,
     numOfTurrets: 7,
-    baseHealth: 3
+    baseHealth: 5
   },
   incremental: {
     enemySpeed: 5,
