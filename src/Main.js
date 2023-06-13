@@ -25,7 +25,7 @@ let config = {
 let levelConfig = {
   initial: {
     enemySpeed: 1/100000,
-    enemyHealth: 300,
+    enemyHealth: 200,
     bulletDamage: 35,
     numOfEnemies: 10,
     numOfTurrets: 7,
