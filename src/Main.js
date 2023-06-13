@@ -1,4 +1,11 @@
-
+/*
+    Noah Walker
+    Major Components:
+      Physics
+      Cameras
+      Text Objects
+      Tween
+*/
 let config = {
   type: Phaser.AUTO,
   parent: 'phaser-example',
