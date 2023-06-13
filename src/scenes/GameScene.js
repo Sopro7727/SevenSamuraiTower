@@ -196,8 +196,8 @@ class GameScene extends Phaser.Scene {
 
 
     // visualizing the path
-    this.graphics.lineStyle(3, 0xffffff, 1);
-    this.path.draw(this.graphics);
+    //this.graphics.lineStyle(3, 0xffffff, 1);
+    //this.path.draw(this.graphics);
   }
 
   createMap() {

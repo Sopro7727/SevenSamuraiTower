@@ -17,10 +17,10 @@ let config = {
 };
 let levelConfig = {
   initial: {
-    enemySpeed: 1/50000,
-    enemyHealth: 100,
-    bulletDamage: 50,
-    numOfEnemies: 8,
+    enemySpeed: 1/100000,
+    enemyHealth: 300,
+    bulletDamage: 35,
+    numOfEnemies: 10,
     numOfTurrets: 7,
     baseHealth: 3
   },

@@ -104,9 +104,7 @@ class PreloaderScene extends Phaser.Scene {
     // placeholder
     this.load.image('logo2', 'assets/logo.png');
     this.load.image('gameMap', 'assets/level/map.png');
-    // tile map in JSON format
-    this.load.tilemapTiledJSON('tileMap', 'assets/level/map.json');
-    this.load.image('tileset', 'assets/level/tileset.png');
+    this.load.image('end', 'assets/ui/endScreen.png');
   }
 
   ready() {

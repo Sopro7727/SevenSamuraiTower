@@ -19,7 +19,7 @@ class UIScene extends Phaser.Scene {
     this.turretsText = this.add.text(430, 5, 'Available Samurai: 0', { fontSize: '16px', fill: '#fff' });
     this.roundTimeText = this.add.text(180, 5, 'Round Start In: 10', { fontSize: '16px', fill: '#fff' });
     this.enemiesText = this.add.text(10, 470, 'Enemies Remaining: 0', { fontSize: '16px', fill: '#fff' });
-    this.levelText = this.add.text(0, 0, 'Level: 0', { fontSize: '40px', fill: '#fff' });
+    this.levelText = this.add.text(0, 0, 'Level: 0', { fontSize: '40px', fill: '#fff' , align: 'center'}).setOrigin(0,0);
 
     // center level text
     var width = this.cameras.main.width;
@@ -71,7 +71,7 @@ class UIScene extends Phaser.Scene {
     }.bind(this));
 
     this.gameScene.events.on('startRound', function (level) {
-      this.levelText.setText('Level: ' + level);
+      this.levelText.setText('Wave: ' + level);
       this.levelText.alpha = 1;
       // fade level text
       this.add.tween({
