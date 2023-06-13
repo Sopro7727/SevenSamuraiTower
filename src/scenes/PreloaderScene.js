@@ -99,14 +99,14 @@ class PreloaderScene extends Phaser.Scene {
     this.load.image('cursor', 'assets/ui/cursor.png');
     this.load.image('blueButton1', 'assets/ui/blue_button02.png');
     this.load.image('blueButton2', 'assets/ui/blue_button03.png');
-    this.anims.create({key:'shoot', frames: this.anims.generateFrameNumbers('shoot', {start: 0, end: 13, first: 0}),frameRate: 30});
+    //this.anims.create({key:'shoot', frames: this.anims.generateFrameNumbers('shoot', {start: 0, end: 13, first: 0}),frameRate: 30});
     this.load.audio('bgmusic', './assets/ui/Lament_Orchestra.wav');
     // placeholder
     this.load.image('logo2', 'assets/logo.png');
-
+    this.load.image('gameMap', 'assets/level/map.png');
     // tile map in JSON format
-    this.load.tilemapTiledJSON('level1', 'assets/level/level1.json');
-    this.load.spritesheet('terrainTiles_default', 'assets/level/terrainTiles_default.png', { frameWidth: 64, frameHeight: 64 });
+    this.load.tilemapTiledJSON('tileMap', 'assets/level/map.json');
+    this.load.image('tileset', 'assets/level/tileset.png');
   }
 
   ready() {

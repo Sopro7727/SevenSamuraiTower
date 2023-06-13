@@ -20,7 +20,7 @@ class Turret extends Phaser.GameObjects.Image {
   }
 
   place(i, j) {
-    this.y = i * 64 + 22;
+    this.y = i * 64;
     this.x = j * 64 + 32;
     this.rotation = 135;
     this.map[i][j] = 1;

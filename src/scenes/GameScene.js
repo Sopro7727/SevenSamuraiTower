@@ -38,8 +38,10 @@ class GameScene extends Phaser.Scene {
     bgm.play();
   }
 
+  
   update(time, delta) {
     // if its time for the next enemy
+    console.log(`X: ${game.input.mousePointer.x}\nY: ${game.input.mousePointer.y}`);
     
     if (time > this.nextEnemy && this.roundStarted && this.enemies.countActive(true) < this.remainingEnemies) {
       var enemy = this.enemies.getFirstDead();
@@ -58,6 +60,7 @@ class GameScene extends Phaser.Scene {
         this.nextEnemy = time + 1500;
       }
     }
+    
   }
 
   updateScore(score) {
@@ -84,14 +87,14 @@ class GameScene extends Phaser.Scene {
       this.turretsW1.setVisible(0);
       this.turretsW1.destroy();
       this.map =  [
-        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [ 0,-1,-1,-1,-1,-1,-1,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0]
+        [ -1, -1,-1, -1, -1, -1, -1, -1, -1, -1],
+        [ -1, -1, 0, -1, 0, -1, 0, -1, -1, -1],
+        [ -1, 0, -1, -1, 0, -1, 0, -1, 0, -1],
+        [ -1, -1, -1, -1, 0, -1, -1, -1, -1, -1],
+        [ -1, 0, 0, -1, -1, -1, 0, -1, -1, -1],
+        [ -1, 0, -1, -1, 0, -1, -1, -1, -1, -1],
+        [ -1, -1, -1, -1, -1, -1, 0, 0, -1, -1],
+        [ -1, 0, -1,-1, -1, -1, -1, -1, -1, -1]
       ];
       this.updateTurrets(4);
     }
@@ -99,14 +102,14 @@ class GameScene extends Phaser.Scene {
       this.turretsW2.setVisible(0);
       this.turretsW2.destroy();
       this.map =  [
-        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [ 0,-1,-1,-1,-1,-1,-1,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
-        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0]
+        [ -1, -1,-1, -1, -1, -1, -1, -1, -1, -1],
+        [ -1, -1, 0, -1, 0, -1, 0, -1, -1, -1],
+        [ -1, 0, -1, -1, 0, -1, 0, -1, 0, -1],
+        [ -1, -1, -1, -1, 0, -1, -1, -1, -1, -1],
+        [ -1, 0, 0, -1, -1, -1, 0, -1, -1, -1],
+        [ -1, 0, -1, -1, 0, -1, -1, -1, -1, -1],
+        [ -1, -1, -1, -1, -1, -1, 0, 0, -1, -1],
+        [ -1, 0, -1,-1, -1, -1, -1, -1, -1, -1]
       ];
       this.updateTurrets(2);
     }
@@ -145,16 +148,16 @@ class GameScene extends Phaser.Scene {
   }
 
   createCursor() {
-    this.cursor = this.add.image(32, 32, 'cursor');
+    this.cursor = this.add.image(16, 16, 'cursor');
     this.cursor.setScale(2);
     this.cursor.alpha = 0;
-
+    //console.log(`X: ${this.cursor.x}\nY: ${this.cursor.y}\n`);
     this.input.on('pointermove', function (pointer) {
       var i = Math.floor(pointer.y / 64);
       var j = Math.floor(pointer.x / 64);
-      console.log(`X: ${this.cursor.x}\nY: ${this.cursor.y}\nMap Value: ${this.map[i][j]}`);
+      //console.log(`X: ${this.cursor.x}\nY: ${this.cursor.y}\nMap Value: ${this.map[i][j]}`);
       if (this.canPlaceTurret(i, j)) {
-        this.cursor.setPosition(j * 64 + 32, i * 64 + 32);
+        this.cursor.setPosition(j * 64+32, i * 64+32);
         this.cursor.alpha = 0.8;
       } else {
         this.cursor.alpha = 0;
@@ -169,25 +172,45 @@ class GameScene extends Phaser.Scene {
   createPath() {
     this.graphics = this.add.graphics();
     // the path the enemies follow
-    this.path = this.add.path(96, -32);
-    this.path.lineTo(96, 164)
-    this.path.lineTo(480, 164)
-    this.path.lineTo(480, 544)
+    this.path = this.add.path(80, 4);
+    this.path.lineTo(80, 150)
+    this.path.lineTo(142, 150)
+    this.path.lineTo(142, 245)
+    this.path.lineTo(50, 245)
+    this.path.lineTo(50, 435)
+    this.path.lineTo(145, 435)
+    this.path.lineTo(145, 340)
+    this.path.lineTo(238, 340)
+    this.path.lineTo(238, 49)
+    this.path.lineTo(335, 49)
+    this.path.lineTo(335, 209)
+    this.path.lineTo(462, 209)
+    this.path.lineTo(462, 53)
+    this.path.lineTo(589, 53)
+    this.path.lineTo(589, 301)
+    this.path.lineTo(469, 301)
+    this.path.lineTo(469, 370)
+    this.path.lineTo(338, 370)
+    this.path.lineTo(338, 460)
+    this.path.lineTo(600, 460)
+
 
     // visualizing the path
-    //this.graphics.lineStyle(3, 0xffffff, 1);
-    //this.path.draw(this.graphics);
+    this.graphics.lineStyle(3, 0xffffff, 1);
+    this.path.draw(this.graphics);
   }
 
   createMap() {
+    this.background = this.add.tileSprite(0,0, 640, 512, 'gameMap').setOrigin(0,0);
     // create our map
-    this.bgMap = this.make.tilemap({ key: 'level1' });
+    /*const bgMap = this.add.tilemap(tileMap);
     // add tileset image
-    this.tiles = this.bgMap.addTilesetImage('terrainTiles_default');
+    const tiles = this.bgMap.addTilesetImage('tileset', 'tiles');
     // create our background layer
-    this.backgroundLayer = this.bgMap.createStaticLayer('Background', this.tiles, 0, 0);
+    this.backgroundLayer = this.bgMap.createLayer('Background', this.tiles, 0, 0);
     // add tower
     this.add.image(480, 480, 'base');
+    */
   }
 
   getEnemy(x, y, distance) {
