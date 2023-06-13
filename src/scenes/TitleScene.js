@@ -4,6 +4,7 @@ class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    this.events.emit('hideUI');
     this.createTitle();
     this.createPlayButton();
   }

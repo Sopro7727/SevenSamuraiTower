@@ -16,7 +16,7 @@ class UIScene extends Phaser.Scene {
   setupUIElements() {
     this.scoreText = this.add.text(5, 5, 'Score: 0', { fontSize: '16px', fill: '#fff' });
     this.healthText = this.add.text(10, 490, 'Base Health: 0', { fontSize: '16px', fill: '#fff' });
-    this.turretsText = this.add.text(430, 5, 'Available Turrets: 0', { fontSize: '16px', fill: '#fff' });
+    this.turretsText = this.add.text(430, 5, 'Available Samurai: 0', { fontSize: '16px', fill: '#fff' });
     this.roundTimeText = this.add.text(180, 5, 'Round Start In: 10', { fontSize: '16px', fill: '#fff' });
     this.enemiesText = this.add.text(10, 470, 'Enemies Remaining: 0', { fontSize: '16px', fill: '#fff' });
     this.levelText = this.add.text(0, 0, 'Level: 0', { fontSize: '40px', fill: '#fff' });
@@ -63,7 +63,7 @@ class UIScene extends Phaser.Scene {
     }.bind(this));
 
     this.gameScene.events.on('updateTurrets', function (turrets) {
-      this.turretsText.setText('Available Turrets: ' + turrets);
+      this.turretsText.setText('Available Samurai: ' + turrets);
     }.bind(this));
 
     this.gameScene.events.on('hideUI', function () {

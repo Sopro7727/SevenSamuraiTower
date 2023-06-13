@@ -20,8 +20,9 @@ class Turret extends Phaser.GameObjects.Image {
   }
 
   place(i, j) {
-    this.y = i * 64 + 32;
+    this.y = i * 64 + 22;
     this.x = j * 64 + 32;
+    this.rotation = 135;
     this.map[i][j] = 1;
   }
 
@@ -34,7 +35,7 @@ class Turret extends Phaser.GameObjects.Image {
         shooting.destroy();
       })*/
       this.scene.addBullet(this.x, this.y, angle);
-      this.angle = (angle + Math.PI / 2) * Phaser.Math.RAD_TO_DEG;
+      //this.angle = (angle + Math.PI / 2) * Phaser.Math.RAD_TO_DEG;
     }
   }
 }

@@ -81,12 +81,39 @@ class GameScene extends Phaser.Scene {
     // increment level
     this.level++;
     if(this.level == 2){
-      this.updateTurrets(+5);
+      this.turretsW1.setVisible(0);
+      this.turretsW1.destroy();
+      this.map =  [
+        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [ 0,-1,-1,-1,-1,-1,-1,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0]
+      ];
+      this.updateTurrets(4);
     }
     if(this.level == 3){
-      this.updateTurrets(+3);
+      this.turretsW2.setVisible(0);
+      this.turretsW2.destroy();
+      this.map =  [
+        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [ 0,-1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [ 0,-1,-1,-1,-1,-1,-1,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0],
+        [ 0, 0, 0, 0, 0, 0, 0,-1, 0, 0]
+      ];
+      this.updateTurrets(2);
     }
-    // increment number of turrets
+    if(this.level == 4){
+      this.events.emit('hideUI');
+      this.scene.start('Title');
+    }
     this.updateTurrets(levelConfig.incremental.numOfTurrets);
     // increment number of enemies
     this.updateEnemies(levelConfig.initial.numOfEnemies + this.level * levelConfig.incremental.numOfEnemies);
@@ -108,7 +135,9 @@ class GameScene extends Phaser.Scene {
 
   createGroups() {
     this.enemies = this.physics.add.group({ classType: Enemy, runChildUpdate: true });
-    this.turrets = this.add.group({ classType: Turret, runChildUpdate: true });
+    this.turretsW1 = this.add.group({ classType: Turret, runChildUpdate: true });
+    this.turretsW2 = this.add.group({ classType: Turret, runChildUpdate: true });
+    this.turretsW3 = this.add.group({ classType: Turret, runChildUpdate: true });
     this.bullets = this.physics.add.group({ classType: Bullet, runChildUpdate: true });
 
     this.physics.add.overlap(this.enemies, this.bullets, this.damageEnemy.bind(this));
@@ -123,7 +152,7 @@ class GameScene extends Phaser.Scene {
     this.input.on('pointermove', function (pointer) {
       var i = Math.floor(pointer.y / 64);
       var j = Math.floor(pointer.x / 64);
-
+      console.log(`X: ${this.cursor.x}\nY: ${this.cursor.y}\nMap Value: ${this.map[i][j]}`);
       if (this.canPlaceTurret(i, j)) {
         this.cursor.setPosition(j * 64 + 32, i * 64 + 32);
         this.cursor.alpha = 0.8;
@@ -185,10 +214,26 @@ class GameScene extends Phaser.Scene {
     var j = Math.floor(pointer.x / 64);
 
     if (this.canPlaceTurret(i, j)) {
-      var turret = this.turrets.getFirstDead();
-      if (!turret) {
+      if(this.level == 1){
+        var turret = this.turretsW1.getFirstDead();
+      }
+      if(this.level == 2){
+        var turret = this.turretsW2.getFirstDead();
+      }
+      if(this.level == 3){
+        var turret = this.turretsW3.getFirstDead();
+      }
+      if (!turret && this.level == 1) {
         turret = new Turret(this, 0, 0, this.map);
-        this.turrets.add(turret);
+        this.turretsW1.add(turret);
+      }
+      if(!turret && this.level == 2){
+        turret = new Turret(this, 0, 0, this.map);
+        this.turretsW2.add(turret);
+      }
+      if(!turret && this.level == 3){
+        turret = new Turret(this, 0, 0, this.map);
+        this.turretsW3.add(turret);
       }
       turret.setActive(true);
       turret.setVisible(true);

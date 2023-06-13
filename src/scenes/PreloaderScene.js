@@ -113,7 +113,7 @@ class PreloaderScene extends Phaser.Scene {
     this.readyCount++;
     if (this.readyCount === 2) {
       // TODO: switch to title screen
-      this.scene.start('Game');
+      this.scene.start('Title');
     }
   }
 }
