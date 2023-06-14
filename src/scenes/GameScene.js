@@ -115,7 +115,7 @@ class GameScene extends Phaser.Scene {
     }
     if(this.level == 4){
       this.events.emit('hideUI');
-      this.scene.start('Title');
+      this.scene.start('endScene');
     }
     this.updateTurrets(levelConfig.incremental.numOfTurrets);
     // increment number of enemies
