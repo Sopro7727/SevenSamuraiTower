@@ -20,7 +20,7 @@ let config = {
       gravity: { y: 0 }
     }
   },
-  scene: [BootScene, PreloaderScene, TitleScene, GameScene, UIScene]
+  scene: [BootScene, PreloaderScene, TitleScene, GameScene, UIScene, EndScene]
 };
 let levelConfig = {
   initial: {
